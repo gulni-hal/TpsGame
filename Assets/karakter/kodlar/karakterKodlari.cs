@@ -19,9 +19,9 @@ public class karakterKodlari : MonoBehaviour
         }
         void Hareket()
         {
-            float yatay = Input.GetAxis("Horizontal");
+            float yatay = Input.GetAxis("Horizontal"); //bunlar project settings deki input managerdeki degiskenler
             float dikey = Input.GetAxis("Vertical");
-            anim.SetFloat("horizontal", yatay);
+            anim.SetFloat("horizontal", yatay); //bunlar karakterin animator undeki parametreler zaten anim verdik
             anim.SetFloat("vertical", dikey);
             this.gameObject.transform.Translate(yatay* karakterHiz*Time.deltaTime,0,dikey* karakterHiz*Time.deltaTime);
         }

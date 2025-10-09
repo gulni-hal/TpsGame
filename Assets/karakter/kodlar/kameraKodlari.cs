@@ -31,7 +31,7 @@ public class kameraKodlari : MonoBehaviour
     {
         Cursor.visible = false;
     }
-    private void Awake()
+    private void Awake() //cursor un gizlenmesi ile ilgili alan. esc ile cikiliyor
     {
 #if UNITY_EDITOR
         var gameWindow = EditorWindow

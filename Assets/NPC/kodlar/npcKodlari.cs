@@ -3,8 +3,8 @@ using System.Collections;
 
 public class npcKodlari : MonoBehaviour
 {
-    public float npcHP = 100;
-    bool npcOlduMu;
+    public float npcHP = 100; // bu degiskeni ileride private yapilmasi gerekiyor simdilik arayuzden zombilerin cani kontrol edilebilsin diye public
+    bool npcOlduMu; 
     Animator npcAnim;
    
     void Start()
