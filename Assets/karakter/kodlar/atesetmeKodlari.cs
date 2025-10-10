@@ -22,7 +22,7 @@ public class atesetmeKodlari : MonoBehaviour
         Ray ray = kamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));//ekranin orta degerleri
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayer)) {
-            hit.collider.gameObject.GetComponent<npcKodlari>().HasarAl(); //npckodlarindaki hasarAl function ina gidiyor layer da npc i layer i vermek lazim ama
+            hit.collider.gameObject.GetComponent<npc1Kod>().HasarAl(); //npckodlarindaki hasarAl function ina gidiyor layer da npc i layer i vermek lazim ama
         }
     }
 }
