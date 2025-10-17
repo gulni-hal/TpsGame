@@ -40,7 +40,7 @@ public class npc1Kod : MonoBehaviour
                 npcNavmesh.isStopped = false;
                 npcNavmesh.SetDestination(hedefOyuncu.transform.position);
                 npcAnim.SetBool("yurume", true);
-                npcAnim.SetBool("saldirma", false);
+                // npcAnim.SetBool("saldirma", false);
                 this.transform.LookAt(hedefOyuncu.transform.position);
             }
             else
@@ -60,7 +60,7 @@ public class npc1Kod : MonoBehaviour
     }
     public void HasarVer()
     {
-        //hedefOyuncu.GetComponent<karakterKodlari>().HasarAl();
+        hedefOyuncu.GetComponent<karakterKodlari>().HasarAl();
     }
     IEnumerator Kaybolma()
     {

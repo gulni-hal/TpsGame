@@ -17,18 +17,13 @@ public class kameraKodlari : MonoBehaviour
     Vector3 objRot;
     public Transform karakterSpine;
 
-
-
-
-    //[SerializeField]
-    //private float fareSensivity;
-    //float fareX;
-    //float fareY;
+    karakterKodlari karakterCan;
 
 
 
     void Start()
     {
+        karakterCan = GameObject.Find("anaKarakter").GetComponent<karakterKodlari>();
         Cursor.visible = false;
     }
     private void Awake() //cursor un gizlenmesi ile ilgili alan. esc ile cikiliyor
@@ -49,38 +44,44 @@ public class kameraKodlari : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
-    
+
     void Update()
     {
 
     }
     private void LateUpdate()
     {
-        //this.transform.position = Vector3.Lerp(this.transform.position, hedef.position + hedefMesafe, Time.deltaTime * 10);
-        //fareX = Input.GetAxis("Mouse X") * fareSensivity;
-        //fareY = Input.GetAxis("Mouse Y") * fareSensivity;
-        //this.transform.eulerAngles = new Vector3(fareY, fareX, 0);
-        //hedef.transform.eulerAngles = new Vector3(0, fareX, 0);
+        if (karakterCan.yasiyorMu() == true)
+        {
+
+            //this.transform.position = Vector3.Lerp(this.transform.position, hedef.position + hedefMesafe, Time.deltaTime * 10);
+            //fareX = Input.GetAxis("Mouse X") * fareSensivity;
+            //fareY = Input.GetAxis("Mouse Y") * fareSensivity;
+            //this.transform.eulerAngles = new Vector3(fareY, fareX, 0);
+            //hedef.transform.eulerAngles = new Vector3(0, fareX, 0);
 
 
-        transform.position = hedef.position;
+            transform.position = hedef.position;
 
-        hedefMesafe.x += Input.GetAxis("Mouse X") * fareSensivity;
-        hedefMesafe.y -= Input.GetAxis("Mouse Y") * fareSensivity;
+            hedefMesafe.x += Input.GetAxis("Mouse X") * fareSensivity;
+            hedefMesafe.y -= Input.GetAxis("Mouse Y") * fareSensivity;
 
-        hedefMesafe.y = Mathf.Clamp(hedefMesafe.y, 0f, 80f);
-        Quaternion QT = Quaternion.Euler(hedefMesafe.y, hedefMesafe.x, 0f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, QT, Time.deltaTime * orbitDamping);
-        Vector3 karakterRot = hedef.transform.eulerAngles; //kameranin rotate etmesi icin ayrica karakterin de ayni yonde rotate etmesi icin rigidbody ver once!!
-        karakterRot.y = QT.eulerAngles.y;  //BUNU YAPMADIGIM ZAMAN KARAKTER ZEMININ ICINE GIRIYORDU X NIN 0 OLMASI LAZIM
-        hedef.transform.eulerAngles = karakterRot;
+            hedefMesafe.y = Mathf.Clamp(hedefMesafe.y, 0f, 80f);
+            Quaternion QT = Quaternion.Euler(hedefMesafe.y, hedefMesafe.x, 0f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, QT, Time.deltaTime * orbitDamping);
+            Vector3 karakterRot = hedef.transform.eulerAngles; //kameranin rotate etmesi icin ayrica karakterin de ayni yonde rotate etmesi icin rigidbody ver once!!
+            karakterRot.y = QT.eulerAngles.y;  //BUNU YAPMADIGIM ZAMAN KARAKTER ZEMININ ICINE GIRIYORDU X NIN 0 OLMASI LAZIM
+            hedef.transform.eulerAngles = karakterRot;
 
-        Vector3 temp = this.transform.localEulerAngles;
-        temp.z = 0;
-        temp.y = 0;
-        temp.x = this.transform.localEulerAngles.x+8;
-        objRot = temp;
-        karakterSpine.transform.localEulerAngles = objRot ; //yukari ve asagi baktiginda spine inda o yonde hareketi icin spine2 kullandim
+            Vector3 temp = this.transform.localEulerAngles;
+            temp.z = 0;
+            temp.y = 0;
+            temp.x = this.transform.localEulerAngles.x + 8;
+            objRot = temp;
+            karakterSpine.transform.localEulerAngles = objRot; //yukari ve asagi baktiginda spine inda o yonde hareketi icin spine2 kullandim
+
+
+        }
 
     }
 }
