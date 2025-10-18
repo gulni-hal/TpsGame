@@ -68,4 +68,14 @@ public class atesetmeKodlari : MonoBehaviour
         }
        
     }
+
+    public float GetSarjor()
+    {
+        return sarjor;
+    }
+    public float GetCephane()
+    {
+        return cephane;
+    }
+
 }

@@ -30,6 +30,10 @@ public class karakterKodlari : MonoBehaviour
         }
 
     }
+    public float GetSaglik()
+    { 
+        return saglik; 
+    }
 
     public bool yasiyorMu()
     {
