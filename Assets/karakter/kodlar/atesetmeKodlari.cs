@@ -11,11 +11,19 @@ public class atesetmeKodlari : MonoBehaviour
     private float sarjor = 5;
     private float cephane = 10;
     private float sarjorKapasitesi = 5;
+
+    AudioSource sesKaynagi;
+    public AudioClip atesSes;
+    public AudioClip reloadSes;
+
+
+
     void Start()
     {
         kamera = Camera.main;
         canKontrol = this.gameObject.GetComponent<karakterKodlari>();
         animator = GetComponent<Animator>();
+        sesKaynagi = this.gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -34,6 +42,7 @@ public class atesetmeKodlari : MonoBehaviour
                 }
                 if(sarjor <= 0 && cephane > 0)
                 {
+                   
                     animator.SetBool("sarjorDegistirme", true);
                     
                 }
@@ -45,8 +54,16 @@ public class atesetmeKodlari : MonoBehaviour
             }
         }
     }
+
+    public void SarjorDegistirmeSes()
+    {
+        sesKaynagi.PlayOneShot(reloadSes);
+        sesKaynagi.volume = 0.6f;
+    }
+
     public void SarjorDegistirme()
     {
+        sesKaynagi.volume = 1f;
         cephane -= sarjorKapasitesi - sarjor;
         sarjor = sarjorKapasitesi;
         animator.SetBool("sarjorDegistirme", false);
@@ -58,6 +75,7 @@ public class atesetmeKodlari : MonoBehaviour
         {
             
             muzzleAtes.Play();
+            sesKaynagi.PlayOneShot(atesSes);
             Ray ray = kamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));//ekranin orta degerleri
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayer))

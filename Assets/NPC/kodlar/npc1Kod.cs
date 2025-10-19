@@ -14,11 +14,15 @@ public class npc1Kod : MonoBehaviour
 
     GameObject hedefOyuncu;
 
+    AudioSource sesKaynagi;
+    public AudioClip saldirmaSesi;
+
     void Start()
     {
         npcAnim = this.GetComponent<Animator>();
         hedefOyuncu = GameObject.Find("anaKarakter");
         npcNavmesh = this.GetComponent<NavMeshAgent>();
+        sesKaynagi = this.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -60,6 +64,7 @@ public class npc1Kod : MonoBehaviour
     }
     public void HasarVer()
     {
+        sesKaynagi.PlayOneShot(saldirmaSesi);
         hedefOyuncu.GetComponent<karakterKodlari>().HasarAl();
     }
     IEnumerator Kaybolma()
