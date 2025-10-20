@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class npc1Kod : MonoBehaviour
 {
-    public float npcHP = 100; // bu degiskeni ileride private yapilmasi gerekiyor simdilik arayuzden zombilerin cani kontrol edilebilsin diye public
+    private float npcHP = 100; // bu degiskeni ileride private yapilmasi gerekiyor simdilik arayuzden zombilerin cani kontrol edilebilsin diye public
     bool npcOlduMu;
     Animator npcAnim;
     public float kovalamaMesafesi;
@@ -75,6 +75,6 @@ public class npc1Kod : MonoBehaviour
     }
     public void HasarAl()
     {
-        npcHP -= Random.Range(10, 15);
+        npcHP -= Random.Range(20, 25);
     }
 }
