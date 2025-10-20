@@ -8,9 +8,9 @@ public class atesetmeKodlari : MonoBehaviour
     Animator animator;
     public ParticleSystem muzzleAtes;
 
-    private float sarjor = 5;
-    private float cephane = 10;
-    private float sarjorKapasitesi = 5;
+    private float sarjor = 10;
+    private float cephane = 50;
+    private float sarjorKapasitesi = 10;
 
     AudioSource sesKaynagi;
     public AudioClip atesSes;

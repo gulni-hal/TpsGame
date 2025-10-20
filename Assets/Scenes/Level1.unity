@@ -387,6 +387,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1851160921559249840, guid: 3d4998389175ab44ea4d4fc6a1c102cd, type: 3}
   m_PrefabInstance: {fileID: 76243786}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &79945879 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7152322657254087278, guid: e9855d3ce13d9574ead4eb2f564239e5, type: 3}
+  m_PrefabInstance: {fileID: 2039198518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &81009238
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7220,11 +7225,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1010630103}
   m_SourcePrefab: {fileID: 100100000, guid: ae723973c2c057e41adc976ffc378ce1, type: 3}
---- !u!4 &1130333914 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8021001004253913084, guid: ae723973c2c057e41adc976ffc378ce1, type: 3}
-  m_PrefabInstance: {fileID: 1115436374}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1155069297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8977,7 +8977,7 @@ MonoBehaviour:
   hedefMesafe: {x: 3, y: 3.5, z: 0}
   fareSensivity: 3
   orbitDamping: 15
-  karakterSpine: {fileID: 1130333914}
+  karakterSpine: {fileID: 79945879}
 --- !u!4 &1662391309
 Transform:
   m_ObjectHideFlags: 0
