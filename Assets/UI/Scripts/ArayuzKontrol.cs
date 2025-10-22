@@ -42,12 +42,19 @@ public class ArayuzKontrol : MonoBehaviour
         sahteMenu.SetActive(false);
         Time.timeScale = 1;
         oyunDurdu = false;
+
+
+        Cursor.lockState = CursorLockMode.Locked; 
+        Cursor.visible = false;
     }
     public void OyunuDurdur()
     {
         sahteMenu.SetActive(true);
         Time.timeScale = 0;
         oyunDurdu = true;
+
+        Cursor.lockState = CursorLockMode.None; 
+        Cursor.visible = true;
     }
     
 }

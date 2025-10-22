@@ -23,6 +23,7 @@ public class karakterKodlari : MonoBehaviour
         {
             hayattaMi = false;
             anim.SetBool("yasiyorMu", hayattaMi);
+            GameOver();
         }
         if (hayattaMi == true)
         {
@@ -53,5 +54,16 @@ public class karakterKodlari : MonoBehaviour
         this.gameObject.transform.Translate(yatay * karakterHiz * Time.deltaTime, 0, dikey * karakterHiz * Time.deltaTime);
     }
 
+    public gameOver gameOver;
+    public void GameOver()
+    {
+        if (saglik <= 0)
+        {
+            gameOver.Setup();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+    }
 
 }

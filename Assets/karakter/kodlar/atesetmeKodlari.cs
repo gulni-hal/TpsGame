@@ -39,6 +39,7 @@ public class atesetmeKodlari : MonoBehaviour
                 if (sarjor <= 0)
                 {
                     animator.SetBool("atesEt", false);
+                   
                 }
                 if(sarjor <= 0 && cephane > 0)
                 {
@@ -46,11 +47,18 @@ public class atesetmeKodlari : MonoBehaviour
                     animator.SetBool("sarjorDegistirme", true);
                     
                 }
-                
+               
+
             }
             else if (Input.GetMouseButtonUp(0))
             {
                 animator.SetBool("atesEt", false);
+            }
+            else if (sarjor == 0 && cephane == 0)
+            {
+
+                GameOverMermi();
+
             }
         }
     }
@@ -96,4 +104,16 @@ public class atesetmeKodlari : MonoBehaviour
         return cephane;
     }
 
+
+    public gameOverMermi gameOverMermi;
+    public void GameOverMermi()
+    {
+        if (sarjor == 0 && cephane == 0)
+        {
+            gameOverMermi.Setup();
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
+    }
 }
