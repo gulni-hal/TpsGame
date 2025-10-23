@@ -4,48 +4,53 @@ using UnityEngine.AI;
 
 public class npc1Kod : MonoBehaviour
 {
-    private float npcHP = 100; // bu degiskeni ileride private yapilmasi gerekiyor simdilik arayuzden zombilerin cani kontrol edilebilsin diye public
-    bool npcOlduMu;
+    public float npcHP = 100;
+    bool npcOlduMu = false;
+    bool coroutineBasladi = false;
+
     Animator npcAnim;
     public float kovalamaMesafesi;
     public float saldirmaMesafesi;
     float mesafe;
     NavMeshAgent npcNavmesh;
-
     GameObject hedefOyuncu;
-
     AudioSource sesKaynagi;
     public AudioClip saldirmaSesi;
 
     void Start()
     {
-        npcAnim = this.GetComponent<Animator>();
+        npcAnim = GetComponent<Animator>();
         hedefOyuncu = GameObject.Find("anaKarakter");
-        npcNavmesh = this.GetComponent<NavMeshAgent>();
-        sesKaynagi = this.GetComponent<AudioSource>();
+        npcNavmesh = GetComponent<NavMeshAgent>();
+        sesKaynagi = GetComponent<AudioSource>();
     }
 
     void Update()
     {
-        if (npcHP <= 0)
+        if (npcHP <= 0 && !npcOlduMu)
         {
             npcOlduMu = true;
-        }
-        if (npcOlduMu == true)
-        {
             npcAnim.SetBool("olum", true);
-            StartCoroutine(Kaybolma());
+            npcNavmesh.isStopped = true;
+
+            if (!coroutineBasladi)
+            {
+                coroutineBasladi = true;
+                StartCoroutine(Kaybolma());
+            }
+            return; // Öldüyse geri kalan kodu çalýþtýrmasýn
         }
-        else
+
+        if (!npcOlduMu)
         {
-            mesafe = Vector3.Distance(this.transform.position, hedefOyuncu.transform.position);
+            mesafe = Vector3.Distance(transform.position, hedefOyuncu.transform.position);
+
             if (mesafe < kovalamaMesafesi)
             {
                 npcNavmesh.isStopped = false;
                 npcNavmesh.SetDestination(hedefOyuncu.transform.position);
                 npcAnim.SetBool("yurume", true);
-                // npcAnim.SetBool("saldirma", false);
-                this.transform.LookAt(hedefOyuncu.transform.position);
+                transform.LookAt(hedefOyuncu.transform.position);
             }
             else
             {
@@ -53,26 +58,30 @@ public class npc1Kod : MonoBehaviour
                 npcAnim.SetBool("yurume", false);
                 npcAnim.SetBool("saldirma", false);
             }
+
             if (mesafe < saldirmaMesafesi)
             {
-                this.transform.LookAt(hedefOyuncu.transform.position);
+                transform.LookAt(hedefOyuncu.transform.position);
                 npcNavmesh.isStopped = true;
                 npcAnim.SetBool("yurume", false);
                 npcAnim.SetBool("saldirma", true);
             }
         }
     }
+
     public void HasarVer()
     {
         sesKaynagi.PlayOneShot(saldirmaSesi);
         hedefOyuncu.GetComponent<karakterKodlari>().HasarAl();
     }
+
     IEnumerator Kaybolma()
     {
         yield return new WaitForSeconds(4);
-        Destroy(this.gameObject);
-
+        FindFirstObjectByType<levelKontrol>().npcOlduruldu();
+        Destroy(gameObject);
     }
+
     public void HasarAl()
     {
         npcHP -= Random.Range(20, 25);
