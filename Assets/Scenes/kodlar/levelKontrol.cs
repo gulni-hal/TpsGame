@@ -1,19 +1,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class levelKontrol : MonoBehaviour
 {
     public GameObject levelTamamlandi;
+    public Text kalanZombiText;
     private int kalanNpc;
-
     void Start()
     {
         kalanNpc = GameObject.FindGameObjectsWithTag("NPC").Length;
+        
+        
+            kalanZombiText.text = "Kalan Zombi: " + kalanNpc;
+
     }
 
     public void npcOlduruldu()
     {
         kalanNpc--;
+
+            kalanZombiText.text = "Kalan Zombi: " + kalanNpc;
 
         if (kalanNpc <= 0)
         {

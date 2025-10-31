@@ -6,13 +6,16 @@ public class karakterKodlari : MonoBehaviour
     [SerializeField]
     private float karakterHiz;
 
-    private float saglik = 100;
+    private float saglik = 100f;
+    private float maxSaglik;
+
 
     bool hayattaMi;
     void Start()
     {
         anim = this.GetComponent<Animator>();
         hayattaMi = true;
+        maxSaglik = saglik;
     }
 
     // Update is called once per frame
@@ -35,6 +38,10 @@ public class karakterKodlari : MonoBehaviour
     { 
         return saglik; 
     }
+    public float GetMaxSaglik() 
+    { 
+        return maxSaglik;
+    }
 
     public bool yasiyorMu()
     {
@@ -44,6 +51,7 @@ public class karakterKodlari : MonoBehaviour
     public void HasarAl()
     {
         saglik -= Random.Range(5, 10);
+        saglik = Mathf.Clamp(saglik, 0f, maxSaglik);
     }
     void Hareket()
     {

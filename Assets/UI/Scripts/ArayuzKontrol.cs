@@ -9,6 +9,10 @@ public class ArayuzKontrol : MonoBehaviour
     public Text mermiText;
     public Text saglikText;
     public GameObject sahteMenu;
+    
+    public Image dolulukImage; 
+    
+
 
 
     bool oyunDurdu;
@@ -22,7 +26,22 @@ public class ArayuzKontrol : MonoBehaviour
     void Update()
     {
         mermiText.text = oyuncu.GetComponent<atesetmeKodlari>().GetSarjor().ToString()+"/"+ oyuncu.GetComponent<atesetmeKodlari>().GetCephane().ToString();
-        saglikText.text = "HP:" + oyuncu.GetComponent<karakterKodlari>().GetSaglik();
+        //saglikText.text = "HP:" + oyuncu.GetComponent<karakterKodlari>().GetSaglik();
+        var karakter = oyuncu.GetComponent<karakterKodlari>();
+
+        float mevcutCan = karakter.GetSaglik();
+        float maxCan = karakter.GetMaxSaglik();
+        float oran = mevcutCan / maxCan;
+
+        if (dolulukImage != null)
+        {
+            dolulukImage.fillAmount = oran;
+        }
+
+        if (saglikText != null)
+        {
+            saglikText.text = "HP: " + mevcutCan.ToString("0");
+        }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

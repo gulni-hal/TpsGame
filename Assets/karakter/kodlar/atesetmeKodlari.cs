@@ -30,6 +30,13 @@ public class atesetmeKodlari : MonoBehaviour
     {
         if (canKontrol.yasiyorMu() == true)
         {
+            if(Input.GetKeyDown(KeyCode.R)&&sarjor < sarjorKapasitesi && cephane > 0)
+            {
+                animator.SetBool("sarjorDegistirme", true);
+                return; // reload sýrasýnda ateþ etme iþlemi yapýlmasýn diye
+            }
+
+
             if (Input.GetMouseButton(0)) // sol click basildigi zaman
             {
                 if(sarjor > 0)
