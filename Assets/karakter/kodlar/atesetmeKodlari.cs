@@ -75,14 +75,23 @@ public class atesetmeKodlari : MonoBehaviour
         sesKaynagi.PlayOneShot(reloadSes);
         sesKaynagi.volume = 0.6f;
     }
-
     public void SarjorDegistirme()
     {
         sesKaynagi.volume = 1f;
-        cephane -= sarjorKapasitesi - sarjor;
-        sarjor = sarjorKapasitesi;
-        animator.SetBool("sarjorDegistirme", false);
+        if (cephane > 20)
+        {
+            cephane -= sarjorKapasitesi - sarjor;
+            sarjor = sarjorKapasitesi;
+            animator.SetBool("sarjorDegistirme", false);
+        }
+        else
+        {//r ile mermi deðiþtirildiðinde oluþan cephanenin eksiye düþmesini engelleyen kýsým
+            sarjor += cephane;
+            cephane = 0;
+            animator.SetBool("sarjorDegistirme", false);
+        }
     }
+
 
     public void AtesEtme()
     {
