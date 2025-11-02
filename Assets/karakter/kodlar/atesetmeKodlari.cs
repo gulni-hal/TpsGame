@@ -97,18 +97,28 @@ public class atesetmeKodlari : MonoBehaviour
     {
         if (sarjor > 0)
         {
-            
+
             muzzleAtes.Play();
             sesKaynagi.PlayOneShot(atesSes);
             Ray ray = kamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));//ekranin orta degerleri
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayer))
+            int layerMask = LayerMask.GetMask("Default", "npc");
+            //if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayer)) //tum engeller default layer inda oldugu icin raycast onlari tanimiyordu
+            if (Physics.Raycast(ray, out hit, 100f, layerMask)) //yeni tanimladigimiz mask kullanildi
             {
-                hit.collider.gameObject.GetComponent<npc1Kod>().HasarAl(); //npckodlarindaki hasarAl function ina gidiyor layer da npc i layer i vermek lazim ama
+                //hit.collider.gameObject.GetComponent<npc1Kod>().HasarAl(); //npckodlarindaki hasarAl function ina gidiyor layer da npc i layer i vermek lazim ama
+                if (hit.collider.CompareTag("NPC"))
+                {
+                    npc1Kod npc = hit.collider.GetComponent<npc1Kod>();
+                    if (npc != null) // npc ise vur
+                    {
+                        npc.HasarAl();
+                    }
+                }
             }
             sarjor--;
         }
-       
+
     }
 
     public float GetSarjor()
