@@ -26,6 +26,7 @@ public class kameraKodlari : MonoBehaviour
         karakterCan = GameObject.Find("anaKarakter").GetComponent<karakterKodlari>();
         Cursor.visible = false;
     }
+    //KAYNAKCA:https://discussions.unity.com/t/why-is-there-no-way-to-hide-the-mouse-cursor-when-entering-play-mode/918105/6
     private void Awake() //cursor un gizlenmesi ile ilgili alan. esc ile cikiliyor
     {
 #if UNITY_EDITOR
@@ -65,6 +66,8 @@ public class kameraKodlari : MonoBehaviour
 
             hedefMesafe.x += Input.GetAxis("Mouse X") * fareSensivity;
             hedefMesafe.y -= Input.GetAxis("Mouse Y") * fareSensivity;
+
+            //KAYNAKCA:https://discussions.unity.com/t/how-to-rotate-my-camera/164349/3
 
             hedefMesafe.y = Mathf.Clamp(hedefMesafe.y, 0f, 80f);
             Quaternion QT = Quaternion.Euler(hedefMesafe.y, hedefMesafe.x, 0f);

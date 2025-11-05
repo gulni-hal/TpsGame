@@ -18,7 +18,7 @@ public class karakterKodlari : MonoBehaviour
         maxSaglik = saglik;
     }
 
-    // Update is called once per frame
+    
 
     void Update()
     {
@@ -65,6 +65,7 @@ public class karakterKodlari : MonoBehaviour
     public gameOver gameOver;
     public void GameOver()
     {
+        
         if (saglik <= 0)
         {
             gameOver.Setup();

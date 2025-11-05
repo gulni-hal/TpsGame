@@ -20,6 +20,7 @@ public class atesetmeKodlari : MonoBehaviour
 
     void Start()
     {
+       
         kamera = Camera.main;
         canKontrol = this.gameObject.GetComponent<karakterKodlari>();
         animator = GetComponent<Animator>();
@@ -103,6 +104,7 @@ public class atesetmeKodlari : MonoBehaviour
             Ray ray = kamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));//ekranin orta degerleri
             RaycastHit hit;
             int layerMask = LayerMask.GetMask("Default", "npc");
+            //KAYNAKCA: https://docs.unity3d.com/6000.2/Documentation/ScriptReference/Physics.Raycast.html
             //if (Physics.Raycast(ray, out hit, Mathf.Infinity, npcLayer)) //tum engeller default layer inda oldugu icin raycast onlari tanimiyordu
             if (Physics.Raycast(ray, out hit, 100f, layerMask)) //yeni tanimladigimiz mask kullanildi
             {
