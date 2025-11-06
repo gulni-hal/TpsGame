@@ -35,7 +35,7 @@ Tüm oyun mekanikleri düşük **low-poly** modeller ve sade grafiklerle tasarla
 | Pause | Esc tuşuna basıldığında ekrana gelir, oyunu durdurur ve ana menüye dön butonu bulundurur. |
 | Canvas | Can barı, Crosshair, mermi sayısı ve kalan zombi sayısını gösterir. |
 | Level Geçiş | Oyuncu her bir level'ı tamamladığında ekrana gelir ve sonraki levele geçmeyi sağlar. |
-| Kazandınız | Oyuncu son level'ı amamladığında ekrana gelir. |
+| Kazandınız | Oyuncu son level'ı tamamladığında ekrana gelir. |
 
 
 ---
